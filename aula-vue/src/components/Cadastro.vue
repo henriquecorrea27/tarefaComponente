@@ -54,6 +54,7 @@ export default {
         if (response.ok) {
           alert("Piloto cadastrado com sucesso!");
           this.clearFields();
+          this.$router.push("/"); // Redireciona para a tela de listagem
         } else {
           alert("Erro ao cadastrar piloto: " + data.error);
         }

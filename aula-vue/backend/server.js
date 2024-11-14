@@ -18,6 +18,24 @@ app.get("/pilotos", (req, res) => {
   });
 });
 
+app.get("/pilotos/:id", (req, res) => {
+  const { id } = req.params; // Pega o id da URL
+  console.log("ID recebido:", id); // Verifique se o id está sendo capturado corretamente
+
+  const query = "SELECT * FROM pilotos WHERE id = ?";
+  db.get(query, [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    if (!row) {
+      res.status(404).json({ message: "Piloto não encontrado" });
+      return;
+    }
+    res.json(row); // Retorna os dados do piloto
+  });
+});
+
 // Rota para adicionar piloto
 app.post("/pilotos", (req, res) => {
   const { nome, numero, equipe } = req.body;
