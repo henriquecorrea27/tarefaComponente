@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>Cadastro de Pilotos de F1</h2>
-
     <form @submit.prevent="addPiloto">
       <label>Nome do Piloto:</label>
       <input
@@ -29,17 +28,6 @@
 
       <button type="submit">Cadastrar Piloto</button>
     </form>
-
-    <div v-if="pilotos.length === 0">
-      <p>Nenhum piloto cadastrado.</p>
-    </div>
-
-    <ul>
-      <li v-for="(piloto, index) in pilotos" :key="index">
-        {{ piloto.nome }} - Nº {{ piloto.numero }} ({{ piloto.equipe }})
-        <button @click="deletePiloto(index)">Remover</button>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -52,24 +40,26 @@ export default {
         numero: "",
         equipe: "",
       },
-      pilotos: [],
     };
   },
   methods: {
-    addPiloto() {
-      if (
-        this.novoPiloto.nome &&
-        this.novoPiloto.numero &&
-        this.novoPiloto.equipe
-      ) {
-        this.pilotos.push({ ...this.novoPiloto });
-        this.clearFields();
-      } else {
-        alert("Por favor, preencha todos os campos.");
+    async addPiloto() {
+      try {
+        const response = await fetch("http://localhost:3000/pilotos", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.novoPiloto),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert("Piloto cadastrado com sucesso!");
+          this.clearFields();
+        } else {
+          alert("Erro ao cadastrar piloto: " + data.error);
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
       }
-    },
-    deletePiloto(index) {
-      this.pilotos.splice(index, 1);
     },
     clearFields() {
       this.novoPiloto = { nome: "", numero: "", equipe: "" };
