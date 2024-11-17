@@ -1,32 +1,23 @@
 <template>
   <div>
     <h2>Listagem de Pilotos</h2>
-    <button @click="irParaCadastro">Cadastrar Novo Piloto</button>
-
-    <div v-if="pilotos.length === 0">
-      <p>Nenhum piloto cadastrado.</p>
-    </div>
-
-    <ul>
-      <li v-for="(piloto, index) in pilotos" :key="piloto.id">
-        {{ piloto.nome }} - Nº {{ piloto.numero }} ({{ piloto.equipe }})
-
-        <!-- Botão de Detalhes -->
-        <button @click="verDetalhes(piloto.id)">
-          <i class="fas fa-eye"></i>
-        </button>
-
-        <!-- Botão de Deletar -->
-        <button @click="deletePiloto(index)">
-          <i class="fas fa-trash"></i>
-        </button>
-      </li>
-    </ul>
+    <BotaoCadastro @click="irParaCadastro" />
+    <NenhumPiloto v-if="pilotos.length === 0" />
+    <PilotoLista
+      :pilotos="pilotos"
+      @verDetalhes="verDetalhes"
+      @deletePiloto="deletePiloto"
+    />
   </div>
 </template>
 
 <script>
+import BotaoCadastro from './components/BotaoCadastro.vue';
+import NenhumPiloto from './components/NenhumPiloto.vue';
+import PilotoLista from './components/PilotoLista.vue';
+
 export default {
+  components: { BotaoCadastro, NenhumPiloto, PilotoLista },
   data() {
     return {
       pilotos: [],
@@ -46,14 +37,19 @@ export default {
     },
     async deletePiloto(index) {
       const piloto = this.pilotos[index];
-      if (confirm(`Tem certeza que deseja remover ${piloto.nome}?`)) {
+      
+      // Exibe a caixa de confirmação
+      const confirmar = window.confirm(`Tem certeza que deseja remover ${piloto.nome}?`);
+      
+      // Se o usuário clicar em "OK", remove o piloto
+      if (confirmar) {
         try {
           const response = await fetch(
             `http://localhost:3000/pilotos/${piloto.id}`,
             { method: "DELETE" }
           );
           if (response.ok) {
-            this.pilotos.splice(index, 1);
+            this.pilotos.splice(index, 1); // Remove o piloto da lista
             alert("Piloto removido com sucesso.");
           } else {
             alert("Erro ao remover piloto.");
