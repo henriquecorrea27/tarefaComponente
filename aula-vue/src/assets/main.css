@@ -1,59 +1,59 @@
-/* Estilos gerais */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9;
+/* main.css */
+
+/* Fundo Amarelo Creme */
+.container {
+  background-color: #f7f0e1;
 }
 
-/* Estilos para o formulário de cadastro */
-.form-cadastro-piloto {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 2rem auto;
+/* Tabela de Pilotos */
+table {
+  background-color: #fff;
 }
 
-.form-cadastro-piloto h2 {
-  font-size: 1.5rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
+thead {
+  background-color: #007bff;
+  color: white;
 }
 
-/* Campos do formulário */
-.form-campo {
+/* Estilo dos botões */
+button {
+  margin: 0 5px;
+  font-size: 1rem;
+}
+
+/* Estilo para a tabela */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
   margin-bottom: 1rem;
 }
 
-.form-campo label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+.table-bordered {
+  border: 1px solid #dee2e6;
 }
 
-.form-campo input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
 }
 
-/* Botão */
-.form-cadastro-piloto button {
-  padding: 0.5rem 1rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  width: 100%;
+/* Estilo para o alerta */
+.alert-warning {
+  background-color: #ffc107;
+  color: #fff;
 }
 
-.form-cadastro-piloto button:hover {
-  background-color: #45a049;
+/* Ícones de botões */
+button i {
+  margin-right: 5px;
+}
+
+/* Ajustes para a área de Ações fora da tabela */
+.actions {
+  margin-top: 20px;
+}
+
+.actions .mb-2 {
+  display: inline-block;
+  margin-right: 10px;
 }
