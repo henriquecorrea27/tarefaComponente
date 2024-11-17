@@ -3,57 +3,71 @@
 /* Fundo Amarelo Creme */
 .container {
   background-color: #f7f0e1;
+  padding: 30px;
+  border-radius: 8px;
 }
 
-/* Tabela de Pilotos */
-table {
+/* Estilo do título */
+h2 {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Estilo para o formulário */
+.form-container {
   background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-thead {
-  background-color: #007bff;
+.form-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+button[type="submit"] {
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+button[type="submit"]:hover {
+  background-color: #28a745;
   color: white;
 }
 
-/* Estilo dos botões */
-button {
-  margin: 0 5px;
-  font-size: 1rem;
+button[type="submit"]:active {
+  background-color: #218838;
 }
 
-/* Estilo para a tabela */
-.table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-  margin-bottom: 1rem;
+.mb-3 {
+  margin-bottom: 1.5rem;
 }
 
-.table-bordered {
-  border: 1px solid #dee2e6;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
-}
-
-/* Estilo para o alerta */
-.alert-warning {
-  background-color: #ffc107;
-  color: #fff;
-}
-
-/* Ícones de botões */
-button i {
-  margin-right: 5px;
-}
-
-/* Ajustes para a área de Ações fora da tabela */
-.actions {
+.d-flex.justify-content-end {
   margin-top: 20px;
 }
 
-.actions .mb-2 {
-  display: inline-block;
-  margin-right: 10px;
+/* Responsividade e largura dos inputs */
+.row .col-md-4 {
+  padding: 5px;
+}
+
+.form-container .form-label {
+  display: block;
+  margin-bottom: 5px;
 }

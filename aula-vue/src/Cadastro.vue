@@ -1,17 +1,34 @@
 <template>
-  <div>
-    <h2>Cadastro de Pilotos de F1</h2>
-    <form @submit.prevent="addPiloto">
-      <label>Nome do Piloto:</label>
-      <input type="text" v-model="novoPiloto.nome" placeholder="Nome" required />
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Pilotos de F1</h2>
 
-      <label>Número do Piloto:</label>
-      <input type="number" v-model="novoPiloto.numero" placeholder="Número" required />
+    <!-- Formulário de Cadastro -->
+    <form @submit.prevent="addPiloto" class="form-container">
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label for="nome" class="form-label">Nome do Piloto:</label>
+          <input type="text" id="nome" v-model="novoPiloto.nome" class="form-control" placeholder="Nome" required />
+        </div>
 
-      <label>Equipe:</label>
-      <input type="text" v-model="novoPiloto.equipe" placeholder="Equipe" required />
+        <div class="col-md-3">
+          <label for="numero" class="form-label">Número do Piloto:</label>
+          <input type="number" id="numero" v-model="novoPiloto.numero" class="form-control" placeholder="Número"
+            required />
+        </div>
 
-      <button type="submit">Cadastrar Piloto</button>
+        <div class="col-md-3">
+          <label for="equipe" class="form-label">Equipe:</label>
+          <input type="text" id="equipe" v-model="novoPiloto.equipe" class="form-control" placeholder="Equipe"
+            required />
+        </div>
+        <div class="align-self-end col-md-2">
+        <!-- Botão de Cadastro -->
+        <button type="submit" class="btn btn-success w-20">
+          Cadastrar Piloto
+        </button>
+      </div>
+      </div>
+
     </form>
   </div>
 </template>
