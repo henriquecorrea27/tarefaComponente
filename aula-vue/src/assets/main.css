@@ -71,3 +71,22 @@ button[type="submit"]:active {
   display: block;
   margin-bottom: 5px;
 }
+
+.detalhes-piloto-card {
+  max-width: 500px; /* Limita a largura do card */
+  border-radius: 8px;
+  background-color: #f8f9fa; /* Fundo cinza claro */
+}
+
+.detalhes-piloto-card .card-title {
+  color: #343a40; /* Título em cinza escuro */
+}
+
+.detalhes-piloto-card .card-body p {
+  font-size: 1.1rem; /* Tamanho de fonte um pouco maior */
+  margin-bottom: 8px;
+}
+
+.container h2 {
+  color: #007bff; /* Título em azul */
+}

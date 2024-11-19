@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <h2>Detalhes do Piloto</h2>
-    <Carregando v-if="!piloto" />
-    <div v-else>
-      <!-- Exibindo as informações do piloto -->
-      <p>{{ piloto.nome }}</p>
-      <p>{{ piloto.numero }}</p>
-      <p>{{ piloto.equipe }}</p>
-      <!-- Adicione outros detalhes do piloto aqui -->
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Detalhes do Piloto</h2>
+    <!-- Componente de Carregamento -->
+    <Carregando v-if="!piloto" class="text-center" />
+    
+    <!-- Exibição de Detalhes -->
+    <div v-else class="card detalhes-piloto-card mx-auto p-4 shadow">
+      <h4 class="card-title text-center mb-3">{{ piloto.nome }}</h4>
+      
+      <div class="card-body">
+        <p><strong>Número:</strong> {{ piloto.numero }}</p>
+        <p><strong>Equipe:</strong> {{ piloto.equipe }}</p>
+        <!-- Outros detalhes podem ser adicionados aqui -->
+      </div>
     </div>
-    <BotaoVoltar @click="voltarParaListagem" />
+
+    <!-- Botão Voltar -->
+    <div class="text-center mt-4">
+      <BotaoVoltar @click="voltarParaListagem" class="btn btn-primary" />
+    </div>
   </div>
 </template>
 
