@@ -1,21 +1,40 @@
 <template>
   <div class="container mt-5">
     <h2 class="text-center mb-4">Detalhes do Piloto</h2>
-    <!-- Componente de Carregamento -->
     <Carregando v-if="!piloto" class="text-center" />
-    
-    <!-- Exibição de Detalhes -->
-    <div v-else class="card detalhes-piloto-card mx-auto p-4 shadow">
-      <h4 class="card-title text-center mb-3">{{ piloto.nome }}</h4>
-      
-      <div class="card-body">
-        <p><strong>Número:</strong> {{ piloto.numero }}</p>
-        <p><strong>Equipe:</strong> {{ piloto.equipe }}</p>
-        <!-- Outros detalhes podem ser adicionados aqui -->
+
+    <div v-else class="d-flex align-items-center card detalhes-piloto-card mx-auto p-4 shadow">
+      <h3 class="card-title text-center mb-3">{{ piloto.nome }}</h3>
+
+      <div class="card-body row">
+
+        <div class="col-md-4">
+          <p><strong>Número:</strong> {{ piloto.numero }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Equipe:</strong> {{ piloto.equipe }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Nacionalidade:</strong> {{ piloto.nacionalidade }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Idade:</strong> {{ idade }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Vitórias:</strong> {{ piloto.vitorias }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Altura:</strong> {{ piloto.altura }}</p>
+        </div>
+        
       </div>
     </div>
 
-    <!-- Botão Voltar -->
     <div class="text-center mt-4">
       <BotaoVoltar @click="voltarParaListagem" class="btn btn-primary" />
     </div>
@@ -33,6 +52,22 @@ export default {
     return {
       piloto: null,
     };
+  },
+  computed: {
+    idade() {
+      if (!this.piloto?.nascimento) return "Data não informada";
+      const hoje = new Date();
+      const nascimento = new Date(this.piloto.nascimento);
+      let idade = hoje.getFullYear() - nascimento.getFullYear();
+      const mesAtual = hoje.getMonth();
+      const mesNascimento = nascimento.getMonth();
+
+      // Ajusta a idade caso o aniversário ainda não tenha ocorrido neste ano
+      if (mesAtual < mesNascimento || (mesAtual === mesNascimento && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+      }
+      return idade;
+    },
   },
   async mounted() {
     await this.buscarPiloto();

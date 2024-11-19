@@ -1,37 +1,98 @@
 <template>
   <div class="container mt-5">
     <h2 class="text-center mb-4">Cadastro de Pilotos de F1</h2>
-
-    <!-- Formulário de Cadastro -->
-    <form @submit.prevent="addPiloto" class="form-container">
-      <div class="row mb-3">
-        <div class="col-md-3">
-          <label for="nome" class="form-label">Nome do Piloto:</label>
-          <input type="text" id="nome" v-model="novoPiloto.nome" class="form-control" placeholder="Nome" required />
-        </div>
-
-        <div class="col-md-3">
-          <label for="numero" class="form-label">Número do Piloto:</label>
-          <input type="number" id="numero" v-model="novoPiloto.numero" class="form-control" placeholder="Número"
-            required />
-        </div>
-
-        <div class="col-md-3">
-          <label for="equipe" class="form-label">Equipe:</label>
-          <input type="text" id="equipe" v-model="novoPiloto.equipe" class="form-control" placeholder="Equipe"
-            required />
-        </div>
-        <div class="align-self-end col-md-2">
-        <!-- Botão de Cadastro -->
-        <button type="submit" class="btn btn-success w-20">
+    <form @submit.prevent="addPiloto" class="row g-3">
+      
+      <div class="col-md-3">
+        <label for="nome" class="form-label">Nome do Piloto</label>
+        <input
+          id="nome"
+          type="text"
+          v-model="novoPiloto.nome"
+          class="form-control"
+          placeholder="Nome"
+          required
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <label for="numero" class="form-label">Número do Piloto</label>
+        <input
+          id="numero"
+          type="number"
+          v-model="novoPiloto.numero"
+          class="form-control"
+          placeholder="Número"
+          required
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <label for="equipe" class="form-label">Equipe</label>
+        <input
+          id="equipe"
+          type="text"
+          v-model="novoPiloto.equipe"
+          class="form-control"
+          placeholder="Equipe"
+          required
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <label for="nacionalidade" class="form-label">Nacionalidade</label>
+        <input
+          id="nacionalidade"
+          type="text"
+          v-model="novoPiloto.nacionalidade"
+          class="form-control"
+          placeholder="País"
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <label for="nascimento" class="form-label">Data de Nascimento</label>
+        <input
+          id="nascimento"
+          type="date"
+          v-model="novoPiloto.nascimento"
+          class="form-control"
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <label for="vitorias" class="form-label">Vitórias na Carreira</label>
+        <input
+          id="vitorias"
+          type="number"
+          v-model="novoPiloto.vitorias"
+          class="form-control"
+          min="0"
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <label for="altura" class="form-label">Altura (cm)</label>
+        <input
+          id="altura"
+          type="number"
+          v-model="novoPiloto.altura"
+          class="form-control"
+          min="100"
+          max="250"
+        />
+      </div>
+      
+      <div class="align-self-end d-flex justify-content-center col-md-3">
+        <button type="submit" class="btn btn-primary w-20">
           Cadastrar Piloto
         </button>
       </div>
-      </div>
-
+      
     </form>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -41,6 +102,10 @@ export default {
         nome: "",
         numero: "",
         equipe: "",
+        nacionalidade: "",
+        nascimento: "",
+        vitorias: 0,
+        altura: "",
       },
     };
   },
@@ -65,8 +130,17 @@ export default {
       }
     },
     clearFields() {
-      this.novoPiloto = { nome: "", numero: "", equipe: "" };
+      this.novoPiloto = {
+        nome: "",
+        numero: "",
+        equipe: "",
+        nacionalidade: "",
+        nascimento: "",
+        vitorias: 0,
+        altura: "",
+      };
     },
   },
 };
 </script>
+
