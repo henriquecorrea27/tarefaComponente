@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Rota para listar pilotos
 app.get("/pilotos", (req, res) => {
-  db.all("SELECT * FROM pilotos", (err, rows) => {
+  db.all("SELECT nome, numero, equipe, id FROM pilotos", (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
@@ -19,9 +19,7 @@ app.get("/pilotos", (req, res) => {
 });
 
 app.get("/pilotos/:id", (req, res) => {
-  const { id } = req.params; // Pega o id da URL
-  console.log("ID recebido:", id); // Verifique se o id está sendo capturado corretamente
-
+  const { id } = req.params; 
   const query = "SELECT * FROM pilotos WHERE id = ?";
   db.get(query, [id], (err, row) => {
     if (err) {
@@ -32,15 +30,14 @@ app.get("/pilotos/:id", (req, res) => {
       res.status(404).json({ message: "Piloto não encontrado" });
       return;
     }
-    res.json(row); // Retorna os dados do piloto
+    res.json(row);
   });
 });
 
-// Rota para adicionar piloto
 app.post("/pilotos", (req, res) => {
-  const { nome, numero, equipe } = req.body;
-  const query = `INSERT INTO pilotos (nome, numero, equipe) VALUES (?, ?, ?)`;
-  db.run(query, [nome, numero, equipe], function (err) {
+  const { nome, numero, equipe, nacionalidade, nascimento, vitorias, altura } = req.body;
+  const query = `INSERT INTO pilotos (nome, numero, equipe, nacionalidade, nascimento, vitorias, altura) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  db.run(query, [nome, numero, equipe, nacionalidade, nascimento, vitorias, altura], function (err) {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
@@ -49,6 +46,26 @@ app.post("/pilotos", (req, res) => {
   });
 });
 
+app.delete("/pilotos/:id", (req, res) => {
+  const { id } = req.params;
+  const query = "DELETE FROM pilotos WHERE id = ?";
+
+  db.run(query, [id], function (err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    if (this.changes === 0) {
+      // Se nenhum registro foi alterado, significa que o ID não existe
+      res.status(404).json({ message: "Piloto não encontrado" });
+    } else {
+      res.json({ message: "Piloto deletado com sucesso" });
+    }
+  });
+});
+
+// Porta do servidor
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

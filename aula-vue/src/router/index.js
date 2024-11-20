@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Cadastro from "../components/Cadastro.vue";
-import Listagem from "../components/Listagem.vue";
-import Detalhes from "../components/Detalhes.vue";
+import Cadastro from "../Cadastro.vue";
+import Listagem from "../Listagem.vue";
+import Detalhes from "../Detalhes.vue";
 
 const routes = [
   { path: "/", component: Listagem, name: "Listagem" },
